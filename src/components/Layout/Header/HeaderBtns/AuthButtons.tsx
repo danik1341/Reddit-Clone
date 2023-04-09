@@ -12,11 +12,16 @@ const AuthButtons: React.FC = () => {
         variant="outline"
         height="28px"
         display={{ base: "none", sm: "flex" }}
-        width={{ base: "70px", md: "110px" }}
+        width={{ base: "none", md: "110px" }}
         mr={2}
         onClick={() => setAuthModalState({ open: true, view: "getApp" })}
       >
-        <Image src="/images/qr-code-scan.png" height="20px" mr={2} />
+        <Image
+          src="/images/qr-code-scan.png"
+          height={{ base: "none", sm: "20px" }}
+          mr={2}
+          display={{ base: "none", sm: "flex" }}
+        />
         Get App
       </Button>
       <Button
