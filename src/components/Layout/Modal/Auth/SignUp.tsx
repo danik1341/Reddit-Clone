@@ -3,7 +3,9 @@ import { useSetRecoilState } from "recoil";
 import { Input, Button, Flex, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/clientApp";
+import { auth, database } from "@/firebase/clientApp";
+import { ref, set, serverTimestamp } from "firebase/database";
+import { onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_ERRORS } from "@/firebase/errors";
 
 const SignUp: React.FC = () => {
@@ -27,6 +29,23 @@ const SignUp: React.FC = () => {
         signUpForm.email,
         signUpForm.password
       );
+      onAuthStateChanged(auth, async (user) => {
+        if (user && signUpForm.isEmail) {
+          const newUserRef = await ref(
+            database,
+            `users/${signUpForm.username}`
+          );
+          await set(newUserRef, {
+            username: signUpForm.username,
+            email: signUpForm.email,
+            createdAt: serverTimestamp(),
+          });
+        }
+      });
+      setSignUpForm((prev) => ({
+        ...prev,
+        isEmail: false,
+      }));
     } catch (err) {
       console.error(err);
     }
@@ -60,6 +79,7 @@ const SignUp: React.FC = () => {
             bg="gray.50"
             mb={2}
             fontSize="10pt"
+            borderRadius="60px"
             onChange={onChange}
             _placeholder={{ color: "grey.500" }}
             _hover={{
@@ -96,6 +116,7 @@ const SignUp: React.FC = () => {
             bg="gray.50"
             mb={2}
             fontSize="10pt"
+            borderRadius="60px"
             onChange={onChange}
             _placeholder={{ color: "grey.500" }}
             _hover={{
@@ -117,6 +138,7 @@ const SignUp: React.FC = () => {
             bg="gray.50"
             mb={2}
             fontSize="10pt"
+            borderRadius="60px"
             onChange={onChange}
             _placeholder={{ color: "grey.500" }}
             _hover={{
