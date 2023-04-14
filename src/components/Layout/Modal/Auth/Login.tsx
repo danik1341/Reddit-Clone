@@ -12,7 +12,7 @@ type LoginProps = {};
 const Login: React.FC<LoginProps> = () => {
   const setAuthModalState = useSetRecoilState(AuthModalState);
   const [loginForm, setLoginForm] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -20,26 +20,13 @@ const Login: React.FC<LoginProps> = () => {
   // FIREBASE logic
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const getEmailByUsernamer = async (
-      username: string
-    ): Promise<string | null> => {
-      const userRef = ref(database, `users/${username}`);
-      const userSnapshot = await get(userRef);
-      if (userSnapshot.exists()) {
-        const userData = userSnapshot.val();
-        return userData.email;
-      } else {
-        return null;
-      }
-    };
-    const email: string | null = await getEmailByUsernamer(loginForm.username);
-    if (email) {
-      signInWithEmailAndPassword(email, loginForm.password);
-      console.log(`Connected Successfully to ${email}`);
+    if (!user) {
+      signInWithEmailAndPassword(loginForm.email, loginForm.password);
+      console.log(`Connected Successfully to ${loginForm.email}`);
     } else {
       signInWithEmailAndPassword("", loginForm.password);
       console.error(
-        `Could not find user with username: ${loginForm.username}. Error: ${
+        `Could not find user with Email: ${loginForm.email}. Error: ${
           FIREBASE_ERRORS[error?.message as keyof typeof FIREBASE_ERRORS]
         }`
       );
@@ -57,8 +44,8 @@ const Login: React.FC<LoginProps> = () => {
     <form onSubmit={onSubmit}>
       <Input
         required
-        name="username"
-        placeholder="Username"
+        name="email"
+        placeholder="Email"
         type="text"
         bg="gray.50"
         mb={2}

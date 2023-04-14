@@ -37,7 +37,6 @@ const AuthModal: React.FC = () => {
     if (user) {
       handleClose();
     }
-    console.log("user", user);
   }, [user]);
 
   return (

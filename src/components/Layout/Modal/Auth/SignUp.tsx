@@ -1,11 +1,14 @@
 import { AuthModalState } from "@/atoms/authModalAtom";
 import { useSetRecoilState } from "recoil";
 import { Input, Button, Flex, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { auth, database } from "@/firebase/clientApp";
 import { ref, set, serverTimestamp } from "firebase/database";
-import { onAuthStateChanged } from "firebase/auth";
+import { User, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { FIREBASE_ERRORS } from "@/firebase/errors";
 
 const SignUp: React.FC = () => {
@@ -16,6 +19,7 @@ const SignUp: React.FC = () => {
     password: "",
     isEmail: false,
   });
+  const [updateProfile, updating, error] = useUpdateProfile(auth);
   const [createUserWithEmailAndPassword, user, loading, userError] =
     useCreateUserWithEmailAndPassword(auth);
   // FIREBASE logic
@@ -29,19 +33,51 @@ const SignUp: React.FC = () => {
         signUpForm.email,
         signUpForm.password
       );
-      onAuthStateChanged(auth, async (user) => {
-        if (user && signUpForm.isEmail) {
-          const newUserRef = await ref(
-            database,
-            `users/${signUpForm.username}`
-          );
-          await set(newUserRef, {
-            username: signUpForm.username,
-            email: signUpForm.email,
-            createdAt: serverTimestamp(),
-          });
-        }
-      });
+      // onAuthStateChanged(auth, async (user) => {
+      //   if (user && signUpForm.isEmail) {
+      //     const newUserRef = await ref(
+      //       database,
+      //       `users/${signUpForm.username}`
+      //     );
+      //     await set(newUserRef, {
+      //       username: signUpForm.username,
+      //       email: signUpForm.email,
+      //       createdAt: serverTimestamp(),
+      //     });
+      //   }
+      // });
+      // console.log(`This is the username: ${signUpForm.username}`);
+      // if (user) {
+      //   await updateProfile(user?.user, {
+      //     displayName: signUpForm.username,
+      //   });
+      // }
+      // const refreshedUser = auth.currentUser;
+      // console.log(refreshedUser);
+      // if(user?.user){
+      //   user?.user.updateProfile({displayName: signUpForm.username});
+      // }
+      // try {
+      //   if (user) {
+      //       cu
+      //     };
+      //     await updateProfile(updatedUser, {
+      //       displayName: signUpForm.username,
+      //     });
+      //     auth.updateCurrentUser(updatedUser);
+      //     console.log("Profile updated successfully");
+      //     console.log(`This is the username: ${user?.user.displayName}`);
+      //   }
+      // } catch (error) {
+      //   console.error("Error updating profile:", error);
+      // }
+      // if (signUpForm.isEmail) {
+      //   await updateProfile({ displayName: signUpForm.username });
+      //   console.log(
+      //     `Profile updated successfully, and is ${user?.user.displayName}`
+      //   );
+      // }
+
       setSignUpForm((prev) => ({
         ...prev,
         isEmail: false,
@@ -50,6 +86,18 @@ const SignUp: React.FC = () => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      try {
+        async () => {
+          await updateProfile({ displayName: signUpForm.username });
+        };
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [user]);
 
   const onClick = () => {
     if (signUpForm.email) {

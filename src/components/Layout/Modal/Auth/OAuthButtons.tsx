@@ -1,10 +1,12 @@
 import { Flex, Button, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useSignInWithApple,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/clientApp";
+import { auth, firestore } from "@/firebase/clientApp";
+import { doc, setDoc } from "firebase/firestore";
+import { User } from "firebase/auth";
 
 const OAuthButtons: React.FC = () => {
   const [createSigninWithApple, aUser, aLoading, aUserError] =
@@ -17,6 +19,19 @@ const OAuthButtons: React.FC = () => {
   } else if (aUserError) {
     error = aUserError.message;
   }
+
+  // const createUserDocument = async (user: User) =>{
+  //   const userDocRef = doc(firestore, 'users', user.uid);
+  //   await setDoc(userDocRef, user);
+  // }
+  // useEffect(() =>{
+  //   if(gUser){
+  //     createUserDocument(gUser.user);
+  //   }
+  //   else if(aUser){
+  //     createUserDocument(aUser.user);
+  //   }
+  // })
 
   const onClickGoogle = async () => {
     try {
