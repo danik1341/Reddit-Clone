@@ -29,14 +29,22 @@ import { User, signOut } from "firebase/auth";
 import { auth } from "../../../firebase/clientApp";
 import React from "react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useSetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { AuthModalState } from "@/atoms/authModalAtom";
+import { communityState } from "@/atoms/communitiesAtom";
 
 type userMenuProps = {
   user?: User | null;
 };
 const userMenu: React.FC<userMenuProps> = ({ user }) => {
+  const resetCommunityState = useResetRecoilState(communityState);
   const setAuthModalSate = useSetRecoilState(AuthModalState);
+
+  const logout = async () => {
+    await signOut(auth);
+    resetCommunityState();
+  };
+
   return (
     <Menu>
       <MenuButton
@@ -417,9 +425,7 @@ const userMenu: React.FC<userMenuProps> = ({ user }) => {
               color="blackAlpha.700"
               minHeight="40px"
               justifyContent="center"
-              onClick={() => {
-                signOut(auth);
-              }}
+              onClick={logout}
             >
               <Flex align="center" grow={2}>
                 <Flex>
