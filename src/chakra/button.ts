@@ -20,7 +20,7 @@ export const Button: ComponentStyleConfig = {
     variants: {
         solid: {
             color: 'white',
-            bg: '#FF3c00',
+            bg: 'blue.500',
             _hover: {
                 bg: 'blue.400',
             },
