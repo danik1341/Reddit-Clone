@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { TiHome } from "react-icons/ti";
 import React from "react";
+import Communities from "./Communities";
 
 const Directory: React.FC = () => {
   return (
@@ -39,7 +40,9 @@ const Directory: React.FC = () => {
           <ChevronDownIcon />
         </Flex>
       </MenuButton>
-      <MenuList>{/* <Communities /> */}</MenuList>
+      <MenuList>
+        <Communities />
+      </MenuList>
     </Menu>
   );
 };
