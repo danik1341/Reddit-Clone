@@ -76,7 +76,7 @@ const newPostForm: React.FC<newPostFormProps> = ({ user }) => {
 
     const newPost: Post = {
       communityId: communityId as string,
-      imgageURL: selectedFile as string,
+      imgageURL: (selectedFile as string) || "",
       creatorId: user.uid,
       creatorDisplayName: user.email!.split("@")[0],
       title: textInputs.title,
@@ -99,7 +99,7 @@ const newPostForm: React.FC<newPostFormProps> = ({ user }) => {
         const downloadURL = await getDownloadURL(imageRef);
 
         await updateDoc(postDocRef, {
-          image: downloadURL,
+          imageURL: downloadURL,
         });
       }
       router.back();
