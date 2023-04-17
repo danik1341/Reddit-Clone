@@ -4,7 +4,7 @@ import {
   directoryMenuState,
 } from "@/atoms/directoryMenuAtom";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FaReddit } from "react-icons/fa";
 import { useRecoilState, useRecoilValue } from "recoil";
 
