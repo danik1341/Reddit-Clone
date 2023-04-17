@@ -28,7 +28,7 @@ import { firestore, storage } from "@/firebase/clientApp";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import useSelectFile from "@/hooks/useSelectFile";
 
-type newPostFormProps = {
+type NewPostFormProps = {
   user: User;
   communityImageURL?: string;
 };
@@ -61,7 +61,7 @@ export type TabItem = {
   icon: typeof Icon.arguments;
 };
 
-const newPostForm: React.FC<newPostFormProps> = ({
+const NewPostForm: React.FC<NewPostFormProps> = ({
   user,
   communityImageURL,
 }) => {
@@ -166,4 +166,4 @@ const newPostForm: React.FC<newPostFormProps> = ({
     </Flex>
   );
 };
-export default newPostForm;
+export default NewPostForm;

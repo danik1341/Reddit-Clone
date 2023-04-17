@@ -33,10 +33,10 @@ import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { AuthModalState } from "@/atoms/authModalAtom";
 import { communityState } from "@/atoms/communitiesAtom";
 
-type userMenuProps = {
+type UserMenuProps = {
   user?: User | null;
 };
-const userMenu: React.FC<userMenuProps> = ({ user }) => {
+const userMenu: React.FC<UserMenuProps> = ({ user }) => {
   const resetCommunityState = useResetRecoilState(communityState);
   const setAuthModalSate = useSetRecoilState(AuthModalState);
 
