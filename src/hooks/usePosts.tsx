@@ -25,8 +25,6 @@ const usePosts = (communityData?: Community) => {
   const setAuthModalState = useSetRecoilState(AuthModalState);
 
   const onSelectPost = (post: Post, postIdx: number) => {
-    console.log("HERE IS STUFF", post, postIdx);
-
     setPostStateValue((prev) => ({
       ...prev,
       selectedPost: { ...post, postIdx },

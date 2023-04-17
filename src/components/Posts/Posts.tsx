@@ -38,12 +38,6 @@ const Posts: React.FC<PostsProps> = ({ communityData }) => {
         ...prev,
         posts: posts as [],
       }));
-      console.log("posts", posts);
-      postStateValue.posts.forEach((post) =>
-        console.log(
-          `This is the Post from Posts ${post.title} and this is their IMG ${post.imgageURL} `
-        )
-      );
     } catch (err: any) {
       console.log("getPosts Error", err);
     }
@@ -52,7 +46,7 @@ const Posts: React.FC<PostsProps> = ({ communityData }) => {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [communityData]);
 
   return (
     <>
