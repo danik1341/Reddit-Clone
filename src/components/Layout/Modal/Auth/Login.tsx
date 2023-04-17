@@ -1,11 +1,10 @@
 import { AuthModalState } from "@/atoms/authModalAtom";
-import { Input, Button, Flex, Text } from "@chakra-ui/react";
-import { useSetRecoilState } from "recoil";
+import { auth } from "@/firebase/clientApp";
+import { FIREBASE_ERRORS } from "@/firebase/errors";
+import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { ref, get } from "firebase/database";
-import { auth, database } from "@/firebase/clientApp";
-import { FIREBASE_ERRORS } from "@/firebase/errors";
+import { useSetRecoilState } from "recoil";
 
 type LoginProps = {};
 

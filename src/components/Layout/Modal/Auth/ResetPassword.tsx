@@ -39,9 +39,9 @@ const ResetPassword: React.FC = () => {
       ) : (
         <>
           <Text fontSize="sm" textAlign="start" mb={2}>
-            Tell us the username and email address associated with your Reddit
+            {`Tell us the username and email address associated with your Reddit
             account, and we’ll send you an email with a link to reset your
-            password.
+            password.`}
           </Text>
           <form onSubmit={onSubmit} style={{ width: "100%" }}>
             <Input

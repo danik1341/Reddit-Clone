@@ -1,12 +1,10 @@
+import { Button, Flex } from "@chakra-ui/react";
+import { User } from "firebase/auth";
 import React from "react";
-import { Button, Flex, Menu } from "@chakra-ui/react";
-import AuthButtons from "./AuthButtons";
 import AuthModal from "../../Modal/Auth/AuthModal";
-import { User, signOut } from "firebase/auth";
-import { auth } from "@/firebase/clientApp";
-import Icons from "./Icons";
 import UserMenu from "../UserMenu";
-import { useSignOut } from "react-firebase-hooks/auth";
+import AuthButtons from "./AuthButtons";
+import Icons from "./Icons";
 
 type HeaderBtnsProps = {
   user?: User | null;

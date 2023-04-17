@@ -1,15 +1,13 @@
 import { AuthModalState } from "@/atoms/authModalAtom";
-import { useSetRecoilState } from "recoil";
-import { Input, Button, Flex, Text } from "@chakra-ui/react";
+import { auth } from "@/firebase/clientApp";
+import { FIREBASE_ERRORS } from "@/firebase/errors";
+import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import { auth, database } from "@/firebase/clientApp";
-import { ref, set, serverTimestamp } from "firebase/database";
-import { User, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { FIREBASE_ERRORS } from "@/firebase/errors";
+import { useSetRecoilState } from "recoil";
 
 const SignUp: React.FC = () => {
   const setAuthModalState = useSetRecoilState(AuthModalState);
@@ -33,50 +31,6 @@ const SignUp: React.FC = () => {
         signUpForm.email,
         signUpForm.password
       );
-      // onAuthStateChanged(auth, async (user) => {
-      //   if (user && signUpForm.isEmail) {
-      //     const newUserRef = await ref(
-      //       database,
-      //       `users/${signUpForm.username}`
-      //     );
-      //     await set(newUserRef, {
-      //       username: signUpForm.username,
-      //       email: signUpForm.email,
-      //       createdAt: serverTimestamp(),
-      //     });
-      //   }
-      // });
-      // console.log(`This is the username: ${signUpForm.username}`);
-      // if (user) {
-      //   await updateProfile(user?.user, {
-      //     displayName: signUpForm.username,
-      //   });
-      // }
-      // const refreshedUser = auth.currentUser;
-      // console.log(refreshedUser);
-      // if(user?.user){
-      //   user?.user.updateProfile({displayName: signUpForm.username});
-      // }
-      // try {
-      //   if (user) {
-      //       cu
-      //     };
-      //     await updateProfile(updatedUser, {
-      //       displayName: signUpForm.username,
-      //     });
-      //     auth.updateCurrentUser(updatedUser);
-      //     console.log("Profile updated successfully");
-      //     console.log(`This is the username: ${user?.user.displayName}`);
-      //   }
-      // } catch (error) {
-      //   console.error("Error updating profile:", error);
-      // }
-      // if (signUpForm.isEmail) {
-      //   await updateProfile({ displayName: signUpForm.username });
-      //   console.log(
-      //     `Profile updated successfully, and is ${user?.user.displayName}`
-      //   );
-      // }
 
       setSignUpForm((prev) => ({
         ...prev,

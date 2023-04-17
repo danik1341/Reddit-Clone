@@ -7,16 +7,15 @@ import {
   Divider,
   Flex,
   Icon,
-  Stack,
-  Text,
   Image,
   Spinner,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 import { doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import moment from "moment";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FaReddit } from "react-icons/fa";

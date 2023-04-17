@@ -1,4 +1,3 @@
-import { communityState } from "@/atoms/communitiesAtom";
 import { Post, PostVote } from "@/atoms/postsAtom";
 import CreatePostLink from "@/components/Community/CreatePostLink";
 import PersonalHome from "@/components/Community/PersonalHome";
@@ -22,7 +21,6 @@ import {
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRecoilValue } from "recoil";
 
 const Home: NextPage = () => {
   const [user, loadingUser] = useAuthState(auth);

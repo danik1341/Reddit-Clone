@@ -15,7 +15,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const PostPage: React.FC = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
-  const { community, pid } = router.query;
+  const { pid } = router.query;
   const { communityStateValue } = useCommunityData();
   const { postStateValue, setPostStateValue, onDeletePost, onVote } = usePosts(
     communityStateValue.currentCommunity

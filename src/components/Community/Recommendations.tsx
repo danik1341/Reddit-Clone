@@ -16,7 +16,6 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaReddit } from "react-icons/fa";
-import { textSpanOverlap } from "typescript";
 
 const Recommendations: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);

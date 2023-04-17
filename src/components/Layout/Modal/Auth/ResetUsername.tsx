@@ -1,7 +1,6 @@
 import { AuthModalState } from "@/atoms/authModalAtom";
 import { auth } from "@/firebase/clientApp";
 import { Button, Flex, Input, Link, Text } from "@chakra-ui/react";
-import { get, ref } from "firebase/database";
 import React, { useState } from "react";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { useSetRecoilState } from "recoil";
@@ -42,8 +41,8 @@ const ResetUsername: React.FC = () => {
       ) : (
         <>
           <Text fontSize="sm" textAlign="start" mb={2}>
-            Tell us the email address associated with your Reddit account, and
-            we’ll send you an email with a link to reset your password.
+            {`Tell us the email address associated with your Reddit account, and
+            we’ll send you an email with a link to reset your password.`}
           </Text>
           <form onSubmit={onSubmit} style={{ width: "100%" }}>
             <Input

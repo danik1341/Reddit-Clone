@@ -1,5 +1,7 @@
+import { AuthModalState } from "@/atoms/authModalAtom";
+import { communityState } from "@/atoms/communitiesAtom";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Divider,
   Flex,
   Icon,
@@ -11,27 +13,24 @@ import {
   Switch,
   Text,
 } from "@chakra-ui/react";
-import { FaRedditSquare, FaScroll } from "react-icons/fa";
-import { VscAccount } from "react-icons/vsc";
+import { User, signOut } from "firebase/auth";
+import React from "react";
 import {
   AiOutlineEye,
-  AiOutlineQuestionCircle,
   AiOutlineInfoCircle,
+  AiOutlineQuestionCircle,
   AiOutlineTrademarkCircle,
 } from "react-icons/ai";
-import { TbTelescope } from "react-icons/tb";
+import { BsMegaphone, BsMoon } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { CiBitcoin } from "react-icons/ci";
+import { FaRedditSquare, FaScroll } from "react-icons/fa";
 import { GrShield } from "react-icons/gr";
 import { IoLogOutOutline, IoSparkles } from "react-icons/io5";
-import { CiBitcoin } from "react-icons/ci";
-import { CgProfile } from "react-icons/cg";
-import { BsMegaphone, BsMoon } from "react-icons/bs";
-import { User, signOut } from "firebase/auth";
-import { auth } from "../../../firebase/clientApp";
-import React from "react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { TbTelescope } from "react-icons/tb";
+import { VscAccount } from "react-icons/vsc";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
-import { AuthModalState } from "@/atoms/authModalAtom";
-import { communityState } from "@/atoms/communitiesAtom";
+import { auth } from "../../../firebase/clientApp";
 
 type UserMenuProps = {
   user?: User | null;

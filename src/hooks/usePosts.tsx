@@ -136,14 +136,6 @@ const usePosts = (communityData?: Community) => {
     }
   };
 
-  // const onSelectPost = (post: Post, postIndex: number) => {
-  //   setPostStateValue((prev) => ({
-  //     ...prev,
-  //     selectedPost: { ...post, postIndex },
-  //   }));
-  //   router.push(`/r/${post.communityId}/comments/${post.id}`);
-  // };
-
   const onDeletePost = async (post: Post): Promise<boolean> => {
     try {
       if (post.imgageURL) {

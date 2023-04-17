@@ -1,15 +1,14 @@
 import { Post } from "@/atoms/postsAtom";
 import {
+  Alert,
+  AlertIcon,
   Flex,
   Icon,
-  Stack,
-  Text,
   Image,
   Skeleton,
   Spinner,
-  Alert,
-  AlertIcon,
-  textDecoration,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 import moment from "moment";
 import Link from "next/link";

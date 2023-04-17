@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import CreateCommunityModal from "../../Modal/CreateCommunityModal/CreateCommunityModal";
+import { communityState } from "@/atoms/communitiesAtom";
 import { MenuItem } from "@chakra-ui/menu";
 import { Box, Flex, Icon, Text } from "@chakra-ui/react";
-import { GrAdd } from "react-icons/gr";
-import { signOut } from "firebase/auth";
-import { useRecoilValue } from "recoil";
-import { communityState } from "@/atoms/communitiesAtom";
-import MenuListItem from "./MenuListItem";
+import React, { useState } from "react";
 import { FaReddit } from "react-icons/fa";
+import { GrAdd } from "react-icons/gr";
+import { useRecoilValue } from "recoil";
+import CreateCommunityModal from "../../Modal/CreateCommunityModal/CreateCommunityModal";
+import MenuListItem from "./MenuListItem";
 
 type CommunitiesProps = {};
 
