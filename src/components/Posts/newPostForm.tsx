@@ -13,7 +13,7 @@ import {
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { BiPoll } from "react-icons/Bi";
+import { BiPoll } from "react-icons/bi";
 import { BsLink45Deg, BsMic } from "react-icons/bs";
 import { IoDocumentText, IoImagesOutline } from "react-icons/io5";
 import ImageUpload from "./PostForm/ImageUpload";
