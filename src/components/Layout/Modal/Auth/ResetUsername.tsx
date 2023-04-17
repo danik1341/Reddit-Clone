@@ -1,5 +1,5 @@
 import { AuthModalState } from "@/atoms/authModalAtom";
-import { auth, database } from "@/firebase/clientApp";
+import { auth } from "@/firebase/clientApp";
 import { Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import { get, ref } from "firebase/database";
 import React, { useState } from "react";
@@ -83,7 +83,7 @@ const ResetUsername: React.FC = () => {
         </>
       )}
       <Text fontSize="9pt">
-        Don't have an email or need assistance logging in?{" "}
+        {`Don't have an email or need assistance logging in?  `}
         <Link fontSize="9pt" color="blue.500" cursor="pointer">
           Get Help
         </Link>

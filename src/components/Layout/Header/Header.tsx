@@ -48,10 +48,9 @@ const Header: React.FC = () => {
       {user && <Directory />}
       <Flex grow={1} mr={1} maxWidth={user ? "auto" : "600px"} align="center">
         <InputGroup width="100%">
-          <InputLeftElement
-            pointerEvents="none"
-            children={<SearchIcon color="gray.300" mb={1} />}
-          />
+          <InputLeftElement pointerEvents="none">
+            <SearchIcon color="gray.400" mb={1} />
+          </InputLeftElement>
           <Input
             placeholder="Search Reddit"
             fontSize="10pt"

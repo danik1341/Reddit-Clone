@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { AuthModalState } from "../../../../atoms/authModalAtom";
-import { auth, database } from "@/firebase/clientApp";
+import { auth } from "@/firebase/clientApp";
 import { ref, get } from "firebase/database";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { Button, Flex, Input, Link, Text } from "@chakra-ui/react";
@@ -25,18 +25,8 @@ const ResetPassword: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userRef = ref(database, `users/${restForm.username}`);
-    const userSnapshot = await get(userRef);
-    if (userSnapshot.exists()) {
-      try {
-        await sendPasswordResetEmail(restForm.email);
-        setSuccess(true);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      console.log(`User: ${restForm.username} does not exist`);
-    }
+    await sendPasswordResetEmail(restForm.email);
+    setSuccess(true);
   };
 
   return (
@@ -132,7 +122,7 @@ const ResetPassword: React.FC = () => {
         </>
       )}
       <Text fontSize="9pt">
-        Don't have an email or need assistance logging in?{" "}
+        {`Don't have an email or need assistance logging in?  `}
         <Link fontSize="9pt" color="blue.500" cursor="pointer">
           Get Help
         </Link>
