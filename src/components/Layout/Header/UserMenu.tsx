@@ -36,7 +36,7 @@ import { communityState } from "@/atoms/communitiesAtom";
 type UserMenuProps = {
   user?: User | null;
 };
-const userMenu: React.FC<UserMenuProps> = ({ user }) => {
+const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   const resetCommunityState = useResetRecoilState(communityState);
   const setAuthModalSate = useSetRecoilState(AuthModalState);
 
@@ -609,4 +609,4 @@ const userMenu: React.FC<UserMenuProps> = ({ user }) => {
     </Menu>
   );
 };
-export default userMenu;
+export default UserMenu;
